@@ -1,0 +1,76 @@
+@startuml
+
+skinparam packageStyle rectangle
+skinparam nodesep 10
+skinparam ranksep 200
+top to bottom direction
+
+' Definiere die Hauptpakete
+package "UI" {
+  class ClientUI {
+    +display()
+  }
+  class ServerUI {
+    +startServer()
+    +toggleServer()
+  }
+  class LoginUI {
+    +handleLogin()
+  }
+  class VerbrauchUI {
+    +aktualisiereTabelle()
+  }
+  class NetzbetreiberUI {
+    +updateTableData()
+  }
+}
+
+package "DataBase" {
+  together {
+    class Database {
+      +getConnection()
+      +createUserTable()
+      +createDataTable()
+    }
+    class User {
+      +addUser()
+    }
+    class DataType {
+      -ID
+      -Zeitstempel
+      -Verbrauch
+    }
+    class SecurityChecks {
+      +checkPassword()
+    }
+    class Data{
+    +getAllData()
+    +getVerbauchsData(int id)
+    }
+  }
+}
+
+package "Network" {
+  class Server {
+    +startServer()
+    +stopServer()
+  }
+  class Client {
+    +connect()
+  }
+}
+
+' Beziehungen zwischen den Paketen
+Server --|> DataBase : "Datenbankzugriff"
+Server ..> Client : "TLS Handshake"
+Client ..> Server : "TLS Handshake"
+ClientUI --> Client : "Verbindung aufbauen"
+ServerUI --> Server : "Server-Steuerung"
+LoginUI --> User : "Authentifizierung"
+Data::getVerbauchsData --> VerbrauchUI : "Verbrauchsdaten für eine ID"
+"DataBase" --> NetzbetreiberUI : "Verbrauchsdaten"
+User <-> SecurityChecks: "Passwort überprüfen"
+Database -> DataType : "Datentyp"
+
+
+@enduml
