@@ -9,18 +9,18 @@ public class ServerUI {
 
     private JFrame frame;
     private JButton serverToggleButton;
-    private static final int PORT = 8080; // Fester Port für den Server
+    private static final int PORT = 8080;
     private boolean isServerRunning = false;
     private Network.Server server;
 
     public ServerUI() {
-        // Setup Frame
+
         frame = new JFrame("Server Control");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 150);
         frame.setLayout(new BorderLayout());
 
-        // Toggle Button für Start/Stop
+
         serverToggleButton = new JButton("Server Starten");
         serverToggleButton.addActionListener(new ActionListener() {
             @Override
@@ -34,11 +34,11 @@ public class ServerUI {
             }
         });
 
-        // Button zum Frame hinzufügen
+
         frame.add(serverToggleButton, BorderLayout.CENTER);
         frame.setVisible(true);
     }
-
+//Server starten und stoppen
     private void toggleServer() throws Exception {
         if (isServerRunning) {
             stopServer();
@@ -46,7 +46,7 @@ public class ServerUI {
             startServer();
         }
     }
-
+//Server starten
     private void startServer() throws Exception {
         if (!isServerRunning) {
             System.out.println("Server gestartet auf Port " + PORT);
@@ -75,7 +75,7 @@ public class ServerUI {
     private void updateButtonLabel() {
         serverToggleButton.setText(isServerRunning ? "Server Stoppen" : "Server Starten");
     }
-
+//Main Methode zum Testen
     public static void main(String[] args) {
         new ServerUI(); // Start der ServerUI
     }

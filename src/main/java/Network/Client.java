@@ -63,7 +63,10 @@ public class Client {
                 // Wenn die Verbindung erfolgreich authentifiziert ist
                 if ("Hallo vom Server".equals(serverResponse)) {
                     System.out.println("Authentifizierung erfolgreich. Login UI wird geöffnet.");
-                    new LoginUI(); // Login-UI öffnen
+                    //LoginUI wird gestartet, um den nächsten Schritt der Authentifizierung zu gehen
+                    //Reele Implementierung würde die Kommunikation hier weiter über Client-Server laufen,
+                    //In diesem Projekt wird dies vereinfacht und der Client greift direkt auf die Datenbank zu.
+                    new LoginUI();
                 } else {
                     System.err.println("Unerwartete Antwort vom Server.");
                 }

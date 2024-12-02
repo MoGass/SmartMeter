@@ -16,13 +16,13 @@ public class ClientUI {
     private static final String KEYSTORE_PASSWORD = "Admin123!";
 
     public ClientUI() {
-        // Frame Setup
+
         System.out.println(TRUSTSTORE_PATH);
         frame = new JFrame("Client Control");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 100);
 
-        // Connect Button
+        // Verbindungsbutton wird hinzugefügt
         connectButton = new JButton("Mit Server verbinden");
         connectButton.addActionListener(new ActionListener() {
             @Override

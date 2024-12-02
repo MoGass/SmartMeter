@@ -13,13 +13,13 @@ public class LoginUI {
     private JButton loginButton;
 
     public LoginUI() {
-        // Setup Frame
+        //Konfiguraiton der UI
         frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 200);
         frame.setLayout(new GridLayout(3, 2, 10, 10));
 
-        // UI elements
+
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField();
 
@@ -28,7 +28,7 @@ public class LoginUI {
 
         loginButton = new JButton("Login");
 
-        // Add elements to Frame
+
         frame.add(usernameLabel);
         frame.add(usernameField);
         frame.add(passwordLabel);
@@ -36,7 +36,7 @@ public class LoginUI {
         frame.add(new JLabel());  // Placeholder
         frame.add(loginButton);
 
-        // Login action
+        // Login Prozess wird gestartet
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,9 +49,12 @@ public class LoginUI {
 
         frame.setVisible(true);
     }
+/*
+    Hier wird das Zugangsmanagement implementiert, da die Admins eine anderer UI bekommen als der Endnutzer
 
+ */
     private void handleLogin(String username, String password) {
-        // Dummy logic
+
         if(!(User.autheticateUser(username, password))) {
             JOptionPane.showMessageDialog(frame, "Ungültiger Benutzername oder Passwort.");
             return;
@@ -64,7 +67,7 @@ public class LoginUI {
             frame.dispose();
         }
     }
-
+//Main Methode zum testen
     public static void main(String[] args) {
         Database.getReady();
         new LoginUI();  // Start the UI

@@ -21,7 +21,7 @@ public class User {
 
         if (!SecurityChecks.checkPassword(password)) {
 
-            System.out.println("Password does not match the required parameters");
+            System.out.println("Password erfüllt die Standards nicht");
             return;
         }
         String insertUserSQL = "INSERT INTO users (name, vorname, email, username, password, admin) VALUES (?, ?, ?, ?, ?, ?)";
@@ -88,7 +88,7 @@ public static boolean autheticateUser(String username, String password) {
 }
 /*
 Hier wird gecheckt, ob der Nutzer ein Admin ist.
-Damit wird das Least-Privelege-Prinzip erhalten. Ist er kein Admin, sieht er nur seine Date
+Damit wird das Least-Privelege-Prinzip erhalten. Ist er kein Admin, sieht er nur seine Daten
  */
     public static boolean checkIsAdmin(String username) {
         String query = "SELECT admin FROM users WHERE id = ?";
@@ -98,7 +98,7 @@ Damit wird das Least-Privelege-Prinzip erhalten. Ist er kein Admin, sieht er nur
             int userId = getIdbyUser(username);
 
             if (userId == -1) {
-                return false; // Benutzer nicht gefunden
+                return false; // Username exisitiert nicht, also auch kein Admin
             }
 
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -114,6 +114,6 @@ Damit wird das Least-Privelege-Prinzip erhalten. Ist er kein Admin, sieht er nur
             e.printStackTrace();
         }
 
-        return false; // Wenn der Benutzer nicht Admin ist oder ein Fehler auftritt
+        return false;
     }
 }

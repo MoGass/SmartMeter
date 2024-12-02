@@ -31,7 +31,7 @@ public class Database {
         return DriverManager.getConnection(JDBC_URL, USER, COMBINED_PASSWORD);
     }
 
-    /* Erstellt die Tabelle 'users', falls sie nicht existiert */
+    /* Erstellt die Tabelle USERS, falls sie nicht existiert */
     public static void createUserTable() {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS users ("
                 + "id INT PRIMARY KEY AUTO_INCREMENT, "
@@ -52,7 +52,7 @@ public class Database {
         }
     }
 
-    /* Erstellt einen Admin-Benutzer, falls keiner existiert */
+    /* Erstellt einen Admin-Dummy-Benutzer, falls keiner existiert */
     private static void checkAndCreateAdminUser() {
         String checkQuery = "SELECT COUNT(*) FROM users WHERE id = 1";
         String insertQuery = "INSERT INTO users (id, name, vorname, email, username, password, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -78,7 +78,7 @@ public class Database {
         }
     }
 
-    /* Erstellt die Tabelle 'data', falls sie nicht existiert */
+    /* Erstellt die Tabelle DATA, falls sie nicht existiert */
     public static void createDataTable() {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS data ("
                 + "data_id INT PRIMARY KEY AUTO_INCREMENT, "
